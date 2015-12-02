@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html ng-app="landingApp">
+
+<head>
+
+  <title>Meal4fit</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="material.min.css">
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body ng-controller="LandingCtrl">
+
+  <div class="mdl-layout mdl-js-layout">
+    <div class="android-content mdl-layout__content">
+      <div class="android-be-together-section mdl-typography--text-center">
+        <div class="logo-font android-slogan">eat what you want. the right way.</div>
+
+        <div class="logo-font android-sub-slogan">welcome to meal4fit... flexible diets customized by you, for you.</div>
+
+        <div class="logo-font android-create-character">
+          <a href="#results">let's see your first recipe</a>
+        </div>
+
+        <a href="#results">
+          <button class="android-fab mdl-button mdl-button--colored mdl-js-button mdl-button--fab mdl-js-ripple-effect">
+            <i class="material-icons">expand_more</i>
+          </button>
+        </a>
+      </div>
+
+      <div class="android-wear-section">
+        <div class="android-wear-band">
+          <div class="android-wear-band-text">
+            <div class="mdl-typography--display-2 mdl-typography--font-thin">For you, by you</div>
+
+            <p class="mdl-typography--headline mdl-typography--font-thin">
+              Based on your own body and goals (lose weight, gain muscle or keep it up), we find out a recommended diet and set a target of calories and macronutrients to hit.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="android-wear-section eat-the-right-way">
+        <div class="android-wear-band">
+          <div class="android-wear-band-text">
+            <div class="mdl-typography--display-2 mdl-typography--font-thin">Eat the right way</div>
+
+            <p class="mdl-typography--headline mdl-typography--font-thin">
+              There are no "good" or "bad" foods, as long as you meet your targets, you can indulge in your favorite foods and eat whatever you want.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="android-more-section">
+        <a name="results"></a>
+
+        <div class="android-section-title mdl-typography--display-1-color-contrast">Your Recipe</div>
+
+        <div class="android-section-subtitle mdl-typography--font-light mdl-typography--subhead">Let's assume that your personalized target is to eat: 610 calories containing 33gr of protein, 81gr of carbs and 33gr of fat.</div>
+
+        <div class="android-card-container mdl-grid">
+          <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+            <div class="mdl-card__media">
+              <img ng-src="{{protein.name}}.jpg">
+            </div>
+
+            <div class="mdl-card__title">
+               <h4 class="mdl-card__title-text">{{protein.name.charAt(0).toUpperCase() + protein.name.replace('-', ' ').slice(1)}}</h4>
+            </div>
+
+            <div class="mdl-card__supporting-text">
+              <span class="mdl-typography--font-light mdl-typography--subhead">{{x[0] | number:1}}gr</span>
+            </div>
+          </div>
+
+          <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+            <div class="mdl-card__media">
+              <img ng-src="{{veggie.name}}.jpg">
+            </div>
+
+            <div class="mdl-card__title">
+               <h4 class="mdl-card__title-text">{{veggie.name.charAt(0).toUpperCase() + veggie.name.replace('-', ' ').slice(1)}}</h4>
+            </div>
+
+            <div class="mdl-card__supporting-text">
+              <span class="mdl-typography--font-light mdl-typography--subhead">{{x[1] | number:1}}gr</span>
+            </div>
+          </div>
+
+          <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+            <div class="mdl-card__media">
+              <img ng-src="{{carb.name}}.jpg">
+            </div>
+
+            <div class="mdl-card__title">
+               <h4 class="mdl-card__title-text">{{carb.name.charAt(0).toUpperCase() + carb.name.replace('-', ' ').slice(1)}}</h4>
+            </div>
+
+            <div class="mdl-card__supporting-text">
+              <span class="mdl-typography--font-light mdl-typography--subhead">{{x[2] | number:1}}gr</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="android-section-title mdl-typography--font-light mdl-typography--subhead">Let's see how close is our autogenerated recipe to your nutrition goals.</div>
+
+        <div class="android-card-container mdl-grid table-container">
+          <table class="mdl-data-table mdl-data-table--selectable mdl-cell mdl-cell--12-col mdl-shadow--3dp">
+            <thead>
+              <tr>
+                <th class="mdl-data-table__cell--non-numeric">Ingredient</th>
+                <th>Calories</th>
+                <th>Protein</th>
+                <th>Carbs</th>
+                <th>Fat</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="mdl-data-table__cell--non-numeric">{{protein.name.charAt(0).toUpperCase() + protein.name.replace('-', ' ').slice(1)}}</td>
+                <td>{{x[0] * protein.calories / 100 | number:1}}cal</td>
+                <td>{{x[0] * protein.protein / 100 | number:1}}gr</td>
+                <td>{{x[0] * protein.carbs / 100 | number:1}}gr</td>
+                <td>{{x[0] * protein.fat / 100 | number:1}}gr</td>
+              </tr>
+              <tr>
+                <td class="mdl-data-table__cell--non-numeric">{{veggie.name.charAt(0).toUpperCase() + veggie.name.replace('-', ' ').slice(1)}}</td>
+                <td>{{x[1] * veggie.calories / 100 | number:1}}cal</td>
+                <td>{{x[1] * veggie.protein / 100 | number:1}}gr</td>
+                <td>{{x[1] * veggie.carbs / 100 | number:1}}gr</td>
+                <td>{{x[1] * veggie.fat / 100 | number:1}}gr</td>
+              </tr>
+              <tr>
+                <td class="mdl-data-table__cell--non-numeric">{{carb.name.charAt(0).toUpperCase() + carb.name.replace('-', ' ').slice(1)}}</td>
+                <td>{{x[2] * carb.calories / 100 | number:1}}cal</td>
+                <td>{{x[2] * carb.protein / 100 | number:1}}gr</td>
+                <td>{{x[2] * carb.carbs / 100 | number:1}}gr</td>
+                <td>{{x[2] * carb.fat / 100 | number:1}}gr</td>
+              </tr>
+
+              <tr>
+                <td class="mdl-data-table__cell--non-numeric">Total</td>
+                <td>{{x[0] * protein.calories / 100 + x[1] * veggie.calories / 100 + x[2] * carb.calories / 100| number:1}}cal</td>
+                <td>{{x[0] * protein.protein / 100 + x[1] * veggie.protein / 100 + x[2] * carb.protein / 100| number:1}}gr</td>
+                <td>{{x[0] * protein.carbs / 100 + x[1] * veggie.carbs / 100 + x[2] * carb.carbs / 100| number:1}}gr</td>
+                <td>{{x[0] * protein.fat / 100 + x[1] * veggie.fat / 100 + x[2] * carb.fat / 100| number:1}}gr</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <br>
+
+        <div class="mdl-typography--text-center">
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                  ng-click="regenerate()">
+            Generate
+          </button>
+        </div>
+
+        <br>
+
+        <p class="mdl-typography--font-light mdl-typography--text-center">
+          What's next? See our <a href="https://gara501.proto.io/share/?id=83810700-4fa2-4e9f-a8c9-fc1841e1b98e&v=5">prototype</a>, check our <a href="https://drive.google.com/file/d/0B0jrA57v4PyRZlYwdDJiQTNIbGs/view?usp=sharing">proposal</a> and start reading more about the <a href="http://www.cbsnews.com/news/flexible-dieting-trend-leaves-room-for-doughnuts/">flexible diet</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="material.min.js"></script>
+  <script src="numeric-1.2.6.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="meal4fit.js"></script>
